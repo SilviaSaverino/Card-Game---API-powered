@@ -4,7 +4,7 @@ document.getElementById("draw-cards-btn").addEventListener("click", handleClickO
 let cardId
 
 function handleClickOnGetCardBtn() {
-    fetch("https://apis.scrimba.com/deckofcards/api/deck/new/shuffle/")
+    fetch("https://deckofcardsapi.com/api/deck/new/shuffle/")
         .then(res => res.json())
         .then(data => {
             console.log(data)
@@ -13,7 +13,15 @@ function handleClickOnGetCardBtn() {
 }
 
 function handleClickOnDrawCardsBtn(){
-    fetch(`https://apis.scrimba.com/deckofcards/api/deck/${cardId}/draw/?count=2`)
+    fetch(`https://deckofcardsapi.com/api/deck/${cardId}/draw/?count=2`)
     .then(res => res.json())
-    .then(data => console.log(data))
+    .then(data => {
+        console.log(data)
+        document.getElementById("cards-img").innerHTML = `
+        <img src=${data.cards[0].image} />
+        <img src=${data.cards[1].image} />
+        `
+    })
+    
 }
+
