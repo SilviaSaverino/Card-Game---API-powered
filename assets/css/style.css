@@ -34,4 +34,9 @@ button {
     height: 200px;
     width: calc(200px * 5 / 7);
     margin: 2em;
+    padding: 0.5em;
+}
+
+img {
+    width: 100%;
 }
