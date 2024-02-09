@@ -1,7 +1,8 @@
 const shuffleCardBtn = document.getElementById("shuffle-card-deck-btn")
 const getDrawCardsBtn = document.getElementById("draw-cards-btn")
 const cardsImage = document.getElementById("cards-img")
-
+const results = document.getElementById("results")
+const cardCount = document.getElementById("card-count")
 let cardId
 
 shuffleCardBtn.addEventListener("click", handleClickOnShuffleCardBtn)
@@ -11,22 +12,26 @@ function handleClickOnShuffleCardBtn() {
     fetch("https://deckofcardsapi.com/api/deck/new/shuffle/")
         .then(res => res.json())
         .then(data => {
-            // console.log(data)
             cardId = data.deck_id
+            console.log(data)
+            cardCount.textContent = `New deck contains: ${data.remaining} cards`
         })
+    removeDrawnCards()
 }
 
 function handleClickOnDrawCardsBtn(){
     fetch(`https://deckofcardsapi.com/api/deck/${cardId}/draw/?count=2`)
     .then(res => res.json())
     .then(data => {
-        // console.log(data)
+        cardCount.textContent = `Remaining cards: ${data.remaining}`
         cardsImage.children[0].innerHTML = `
         <img src=${data.cards[0].image} />
     `
         cardsImage.children[1].innerHTML = `
         <img src=${data.cards[1].image} />
     `
+    const winnerText = determineWinner(data.cards[0],data.cards[1])
+    results.textContent = `${winnerText}`
     })
     
 }
@@ -37,24 +42,17 @@ function determineWinner(card1, card2) {
 
     const firstCardValueIndex = cardValueOptions.indexOf(card1.value)
     const secondCardValueIndex = cardValueOptions.indexOf(card2.value)
-    console.log("card 1=", firstCardValueIndex)
-    console.log("card 2=", secondCardValueIndex)
-
       
     if (firstCardValueIndex > secondCardValueIndex) {
-        console.log("Card 1 wins!")
+        return "Card 1 wins!"
     } else if (firstCardValueIndex < secondCardValueIndex) {
-        console.log("Card 2 wins!")
+       return "Card 2 wins!"
     } else {
-        console.log("It's a tie!")
+        return "It's a tie!"
     }
 }
 
-const card1Obj = {
-    value: "7"
+function removeDrawnCards(){
+    cardsImage.children[0].innerHTML = ""
+    cardsImage.children[1].innerHTML = ""
 }
-const card2Obj = {
-    value: "KING"
-}
-
-determineWinner(card1Obj, card2Obj)
