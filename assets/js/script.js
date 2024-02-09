@@ -1,7 +1,11 @@
-document.getElementById("shuffle-card-deck-btn").addEventListener("click", handleClickOnShuffleCardBtn)
-document.getElementById("draw-cards-btn").addEventListener("click", handleClickOnDrawCardsBtn)
+const shuffleCardBtn = document.getElementById("shuffle-card-deck-btn")
+const getDrawCardsBtn = document.getElementById("draw-cards-btn")
+const cardsImage = document.getElementById("cards-img")
 
 let cardId
+
+shuffleCardBtn.addEventListener("click", handleClickOnShuffleCardBtn)
+getDrawCardsBtn.addEventListener("click", handleClickOnDrawCardsBtn)
 
 function handleClickOnShuffleCardBtn() {
     fetch("https://deckofcardsapi.com/api/deck/new/shuffle/")
@@ -17,10 +21,10 @@ function handleClickOnDrawCardsBtn(){
     .then(res => res.json())
     .then(data => {
         console.log(data)
-        document.getElementById("cards-img").children[0].innerHTML = `
+        cardsImage.children[0].innerHTML = `
         <img src=${data.cards[0].image} />
     `
-    document.getElementById("cards-img").children[1].innerHTML = `
+        cardsImage.children[1].innerHTML = `
         <img src=${data.cards[1].image} />
     `
     })
