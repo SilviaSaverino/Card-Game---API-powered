@@ -5,6 +5,13 @@ const results = document.getElementById("results")
 const cardCount = document.getElementById("card-count")
 let cardId
 
+
+window.onLoad = function(){
+    shuffleCardBtn.classList.add("bounce")
+    getDrawCardsBtn.disabled = true
+}
+
+
 shuffleCardBtn.addEventListener("click", handleClickOnShuffleCardBtn)
 getDrawCardsBtn.addEventListener("click", handleClickOnDrawCardsBtn)
 
@@ -17,6 +24,7 @@ function handleClickOnShuffleCardBtn() {
             cardCount.textContent = `New deck contains: ${data.remaining} cards`
         })
     removeDrawnCards()
+    removeBouncingEffectFromShuffleDeckBtn()
 }
 
 function handleClickOnDrawCardsBtn(){
@@ -33,7 +41,7 @@ function handleClickOnDrawCardsBtn(){
     const winnerText = determineWinner(data.cards[0],data.cards[1])
     results.textContent = `${winnerText}`
     })
-    
+    removeBouncingEffectFromNewCardsBtn()
 }
 
 function determineWinner(card1, card2) {
@@ -55,4 +63,22 @@ function determineWinner(card1, card2) {
 function removeDrawnCards(){
     cardsImage.children[0].innerHTML = ""
     cardsImage.children[1].innerHTML = ""
+}
+
+function removeBouncingEffectFromShuffleDeckBtn() {
+    shuffleCardBtn.classList.remove("bounce")
+    enableDrawCardBtn()
+    addBouncingEffectToNewCardsBtn()
+}
+
+function enableDrawCardBtn(){
+    getDrawCardsBtn.disabled = false
+}
+
+function addBouncingEffectToNewCardsBtn() {
+    getDrawCardsBtn.classList.add("bounce")
+}
+
+function removeBouncingEffectFromNewCardsBtn() {
+    getDrawCardsBtn.classList.remove("bounce")
 }
