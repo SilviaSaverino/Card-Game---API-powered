@@ -36,6 +36,10 @@ button {
     padding: 1em 2em;
 }
 
+.btn-container {
+    margin-top: 3.5em;
+}
+
 button:disabled {
     cursor: not-allowed;
 }
@@ -73,10 +77,6 @@ h3 {
     color: rgb(30, 235, 11);
 }
 
-section:last-child {
-    margin-top: auto;
-}
-
 .bounce {
     animation: bounce2 2s ease infinite;
 }
@@ -87,3 +87,22 @@ section:last-child {
     60% {transform: translateY(-15px);}
 }
 
+@media (max-width: 480px) {
+
+    .card-display-area {
+        height: 150px;
+        width: calc(150px * 5 / 7);
+        padding: 0.2em;
+    }
+
+    h2 {
+        font-size: 1.4rem;
+    }
+    
+    button {
+            margin: 0.5em;
+            padding: 0.5em;
+    }    
+
+  
+}
