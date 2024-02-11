@@ -40,6 +40,12 @@ function handleClickOnDrawCardsBtn(){
     `
     const winnerText = determineWinner(data.cards[0],data.cards[1])
     results.textContent = `${winnerText}`
+
+    if (data.remaining === 0){
+        getDrawCardsBtn.disabled = true
+        removeDrawnCards()
+    }
+
     })
     removeBouncingEffectFromNewCardsBtn()
 }
@@ -54,7 +60,7 @@ function determineWinner(card1, card2) {
     if (firstCardValueIndex > secondCardValueIndex) {
         return "Card 1 wins!"
     } else if (firstCardValueIndex < secondCardValueIndex) {
-       return "Card 2 wins!"
+        return "Card 2 wins!"
     } else {
         return "It's a tie!"
     }
