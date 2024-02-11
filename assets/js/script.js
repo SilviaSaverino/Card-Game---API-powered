@@ -4,7 +4,8 @@ const cardsImage = document.getElementById("cards-img")
 const results = document.getElementById("results")
 const cardCount = document.getElementById("card-count")
 let cardId
-
+let pcScoreTotal = 0
+let userScoreTotal = 0
 
 window.onLoad = function(){
     shuffleCardBtn.classList.add("bounce")
@@ -50,6 +51,7 @@ function handleClickOnDrawCardsBtn(){
     removeBouncingEffectFromNewCardsBtn()
 }
 
+
 function determineWinner(card1, card2) {
     const cardValueOptions = ["2", "3", "4", "5", "6", "7", "8", "9", 
     "10", "JACK", "QUEEN", "KING", "ACE"]
@@ -58,9 +60,11 @@ function determineWinner(card1, card2) {
     const secondCardValueIndex = cardValueOptions.indexOf(card2.value)
       
     if (firstCardValueIndex > secondCardValueIndex) {
-        return "Card 1 wins!"
+        incrementPcScore()
+        return "PC wins!"
     } else if (firstCardValueIndex < secondCardValueIndex) {
-        return "Card 2 wins!"
+        incrementUserScore()
+        return "You win!"
     } else {
         return "It's a tie!"
     }
@@ -88,3 +92,16 @@ function addBouncingEffectToNewCardsBtn() {
 function removeBouncingEffectFromNewCardsBtn() {
     getDrawCardsBtn.classList.remove("bounce")
 }
+
+function incrementPcScore(){
+    const pcScore = document.getElementById("pc-score")
+    pcScoreTotal++
+    pcScore.textContent = `PC score: ${pcScoreTotal}`
+}
+
+function incrementUserScore(){
+    const userScore = document.getElementById("user-score")
+    userScoreTotal++
+    userScore.textContent = `Your score: ${userScoreTotal}`
+}
+
