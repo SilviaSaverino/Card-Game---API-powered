@@ -10,11 +10,10 @@ let pcScoreTotal = 0
 let userScoreTotal = 0
 
 window.onLoad = function(){
-    shuffleCardBtn.classList.add("bounce")
     getDrawCardsBtn.disabled = true
     showGameRules()
+    addBouncingEffectToshuffleCardBtn()
 }
-
 
 shuffleCardBtn.addEventListener("click", handleClickOnShuffleCardBtn)
 getDrawCardsBtn.addEventListener("click", handleClickOnDrawCardsBtn)
@@ -30,10 +29,8 @@ function handleClickOnShuffleCardBtn() {
     removeDrawnCards()
     removeBouncingEffectFromShuffleDeckBtn()
     showGameRules()
+    removeGlowEffect()
 }
-
-
-
 
 function handleClickOnDrawCardsBtn(){
     fetch(`https://deckofcardsapi.com/api/deck/${cardId}/draw/?count=2`)
@@ -83,6 +80,10 @@ function removeDrawnCards(){
     cardsImage.children[1].innerHTML = ""
 }
 
+function addBouncingEffectToshuffleCardBtn() {
+    shuffleCardBtn.classList.add("bounce")
+}
+
 function removeBouncingEffectFromShuffleDeckBtn() {
     shuffleCardBtn.classList.remove("bounce")
     enableDrawCardBtn()
@@ -122,8 +123,18 @@ function displayFinalWinner(pcScoreTotal, userScoreTotal){
     } else {
         finalResult.textContent = "It's a tie game!"
     }
+    addGlowEffect()
+    addBouncingEffectToshuffleCardBtn()
 }
 
 function showGameRules(){
     finalResult.textContent = "Higher card wins!"
+}
+
+function addGlowEffect(){
+    finalResult.classList.add("glow")
+}
+
+function removeGlowEffect(){
+    finalResult.classList.remove("glow")
 }

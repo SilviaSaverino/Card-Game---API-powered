@@ -87,6 +87,33 @@ h3 {
     60% {transform: translateY(-15px);}
 }
 
+.glow {
+    color: #fff;
+    animation: glow 1s ease-in-out infinite alternate;
+  }
+  
+  @-webkit-keyframes glow {
+    from {
+      text-shadow: 0 0 10px #fff, 
+      0 0 20px #fff, 
+      0 0 30px rgb(37, 245, 18), 
+      0 0 40px  rgb(37, 245, 18), 
+      0 0 50px rgb(37, 245, 18), 
+      0 0 60px rgb(37, 245, 18), 
+      0 0 70px  rgb(37, 245, 18);
+    }
+    
+    to {
+      text-shadow: 0 0 20px #fff, 
+      0 0 30px  rgb(37, 245, 18), 
+      0 0 40px  rgb(37, 245, 18), 
+      0 0 50px  rgb(37, 245, 18), 
+      0 0 60px  rgb(37, 245, 18), 
+      0 0 70px  rgb(37, 245, 18), 
+      0 0 80px  rgb(37, 245, 18);
+    }
+  }
+
 @media (max-width: 480px) {
 
     .card-display-area {
