@@ -3,6 +3,8 @@ const getDrawCardsBtn = document.getElementById("draw-cards-btn")
 const cardsImage = document.getElementById("cards-img")
 const results = document.getElementById("results")
 const cardCount = document.getElementById("card-count")
+const finalResult = document.getElementById("final-result")
+
 let cardId
 let pcScoreTotal = 0
 let userScoreTotal = 0
@@ -10,6 +12,7 @@ let userScoreTotal = 0
 window.onLoad = function(){
     shuffleCardBtn.classList.add("bounce")
     getDrawCardsBtn.disabled = true
+    showGameRules()
 }
 
 
@@ -26,7 +29,11 @@ function handleClickOnShuffleCardBtn() {
         })
     removeDrawnCards()
     removeBouncingEffectFromShuffleDeckBtn()
+    showGameRules()
 }
+
+
+
 
 function handleClickOnDrawCardsBtn(){
     fetch(`https://deckofcardsapi.com/api/deck/${cardId}/draw/?count=2`)
@@ -45,6 +52,7 @@ function handleClickOnDrawCardsBtn(){
     if (data.remaining === 0){
         getDrawCardsBtn.disabled = true
         removeDrawnCards()
+        displayFinalWinner(pcScoreTotal, userScoreTotal)
     }
 
     })
@@ -105,3 +113,17 @@ function incrementUserScore(){
     userScore.textContent = `Your score: ${userScoreTotal}`
 }
 
+function displayFinalWinner(pcScoreTotal, userScoreTotal){
+    
+    if (pcScoreTotal > userScoreTotal) {
+        finalResult.textContent = "The computer won the game!"
+    } else if (pcScoreTotal < userScoreTotal) {
+        finalResult.textContent = "You won the game!"
+    } else {
+        finalResult.textContent = "It's a tie game!"
+    }
+}
+
+function showGameRules(){
+    finalResult.textContent = "Higher card wins!"
+}
