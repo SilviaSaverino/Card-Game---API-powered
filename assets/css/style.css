@@ -1,3 +1,9 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
 html, body {
     margin: 0;
     padding: 0;
@@ -20,8 +26,12 @@ main section {
     text-align: center;
 }
 
-.top-section{
+.top-section {
     height: 15vh;
+}
+
+.middle-section {
+    margin-top: 2.5em;
 }
 
 button {
@@ -33,11 +43,11 @@ button {
     color: #fafafa;
     font-size: 1.2rem;
     margin: 0.5em 1em;
-    padding: 1em 2em;
+    padding: 0.8em 1em;
 }
 
 .btn-container {
-    margin-top: 3.5em;
+    margin-top: 0.5em;
 }
 
 button:disabled {
@@ -47,8 +57,8 @@ button:disabled {
 .card-display-area {
     border: 2px solid #609171;
     border-radius: 5px;
-    height: 200px;
-    width: calc(200px * 5 / 7);
+    height: 175px;
+    width: calc(175px * 5 / 7);
     margin-bottom: 1em;
     padding: 0.5em;
 }
@@ -122,14 +132,27 @@ h3 {
         padding: 0.2em;
     }
 
+    .btn-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
     h2 {
         font-size: 1.4rem;
     }
+
+    p {
+        font-size: 1rem;
+    }
     
     button {
-            margin: 0.5em;
-            padding: 0.5em;
+        margin: 0.5em;
+        padding: 0.5em;
     }    
 
+    #user-score {
+        margin-bottom: 0;
+    }
   
 }
